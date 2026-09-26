@@ -1,0 +1,25 @@
+[workspace]
+resolver = "3"
+members = ["crates/declic-core", "crates/declic-win", "crates/declic"]
+default-members = ["crates/declic-core", "crates/declic-win", "crates/declic"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.88"
+license = "MIT OR Apache-2.0"
+authors = ["Declic contributors"]
+publish = false
+
+[workspace.dependencies]
+declic-core = { path = "crates/declic-core" }
+declic-win = { path = "crates/declic-win" }
+serde = { version = "1", features = ["derive"] }
+toml = "1"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 4
+strip = "symbols"
+panic = "unwind"

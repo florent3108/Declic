@@ -1,0 +1,30 @@
+[package]
+name = "declic"
+description = "Declic: keyboard shortcuts for Windows."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+publish.workspace = true
+build = "build.rs"
+
+[[bin]]
+name = "declic"
+path = "src/main.rs"
+
+[dependencies]
+declic-core.workspace = true
+declic-win.workspace = true
+serde.workspace = true
+toml.workspace = true
+iced = { version = "0.14", default-features = false, features = ["tiny-skia", "crisp", "thread-pool", "svg", "image-without-codecs", "advanced"] }
+
+[build-dependencies]
+embed-resource = "3"
+
+[target.'cfg(windows)'.dependencies.windows]
+version = "0.62"
+features = ["Win32_Foundation", "Win32_UI_WindowsAndMessaging"]
+
+
